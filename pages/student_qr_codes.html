@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Codes - QR Attendance System</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="../index.html">QR Attendance</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="student_dashboard.html">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="student_mark_attendance.html">Mark Attendance</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="student_qr_codes.html">QR Codes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="logoutUser()">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-md-12">
+                <h2>QR Codes for Your Classes</h2>
+                <p>View QR codes for your enrolled classes.</p>
+            </div>
+        </div>
+
+        <div class="row mt-4">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5>Active QR Codes</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6 mb-4">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h6>Mathematics 101</h6>
+                                    </div>
+                                    <div class="card-body text-center">
+                                        <p><small>Date: June 15, 2023</small><br>
+                                        <small>Time: 09:00 AM</small></p>
+
+                                        <div class="qr-code-container">
+                                            <div id="qrcode-1" class="qr-code"></div>
+                                            <input type="hidden" id="qr-data-1" value="MATH101-20230615-0900">
+                                        </div>
+
+                                        <div class="mt-2">
+                                            <p><small>Session Code: <strong>MATH101-20230615-0900</strong></small></p>
+                                        </div>
+
+                                        <div class="mt-3">
+                                            <a href="student_mark_attendance.html?session_code=MATH101-20230615-0900" class="btn btn-sm btn-primary">Mark Attendance</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-4">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h6>Science 101</h6>
+                                    </div>
+                                    <div class="card-body text-center">
+                                        <p><small>Date: June 16, 2023</small><br>
+                                        <small>Time: 10:30 AM</small></p>
+
+                                        <div class="qr-code-container">
+                                            <div id="qrcode-2" class="qr-code"></div>
+                                            <input type="hidden" id="qr-data-2" value="SCI101-20230616-1030">
+                                        </div>
+
+                                        <div class="mt-2">
+                                            <p><small>Session Code: <strong>SCI101-20230616-1030</strong></small></p>
+                                        </div>
+
+                                        <div class="mt-3">
+                                            <a href="student_mark_attendance.html?session_code=SCI101-20230616-1030" class="btn btn-sm btn-primary">Mark Attendance</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- QR Code Library -->
+    <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
+    <!-- Custom JS -->
+    <script src="../assets/js/script-html.js"></script>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Generate QR codes for each session
+            new QRCode(document.getElementById("qrcode-1"), {
+                text: document.getElementById("qr-data-1").value,
+                width: 128,
+                height: 128,
+                colorDark: "#000000",
+                colorLight: "#ffffff",
+                correctLevel: QRCode.CorrectLevel.H
+            });
+            
+            new QRCode(document.getElementById("qrcode-2"), {
+                text: document.getElementById("qr-data-2").value,
+                width: 128,
+                height: 128,
+                colorDark: "#000000",
+                colorLight: "#ffffff",
+                correctLevel: QRCode.CorrectLevel.H
+            });
+        });
+    </script>
+</body>
+</html>
